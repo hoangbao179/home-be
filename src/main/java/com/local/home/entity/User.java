@@ -11,22 +11,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "product")
+@Table(name = "user")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product extends CommonEntity {
+public class User extends CommonEntity{
+
     @Id
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "account_name")
+    private String accountName;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "price")
-    private Long price;
+    @Column(name = "email")
+    private String email;
 }
