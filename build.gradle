@@ -26,8 +26,20 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+//task buildDocker(type: Docker, dependsOn: build) {
+//	applicationName = jar.baseName
+//	dockerfile = file('src/main/java/com/local/home/Dockerfile')
+//	doFirst {
+//		copy {
+//			from jargra
+//			into stageDir
+//		}
+//	}
+//}

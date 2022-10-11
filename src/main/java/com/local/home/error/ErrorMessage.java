@@ -1,4 +1,4 @@
-package com.local.home.service.dto;
+package com.local.home.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

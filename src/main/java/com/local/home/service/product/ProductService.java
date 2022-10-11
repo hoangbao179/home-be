@@ -1,11 +1,11 @@
-package com.local.home.service.impl;
+package com.local.home.service.product;
 
+import com.local.home.dto.product.ProductDto;
 import com.local.home.entity.Product;
 import com.local.home.error.NotFoundException;
 import com.local.home.repository.ProductRepository;
-import com.local.home.service.IProductService;
-import com.local.home.service.dto.ProductDto;
-import com.local.home.service.mapper.ProductMapper;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,33 +17,34 @@ public class ProductService implements IProductService {
 
     private final ProductRepository productRepository;
 
-    private final ProductMapper productMapper;
+    @Autowired
+    private final ModelMapper mapper;
 
     public ProductService(ProductRepository _productRepository,
-                          ProductMapper _productMapper) {
+                          ModelMapper _mapper) {
         productRepository = _productRepository;
-        productMapper = _productMapper;
+        mapper = _mapper;
     }
 
     @Override
     public List<ProductDto> findAll() {
-        return productRepository.findAll()
-                .stream().map(productMapper::toDto).collect(Collectors.toList());
+        return productRepository.findAll().stream()
+                .map(x-> mapper.map(x, ProductDto.class)).collect(Collectors.toList());
     }
 
     @Override
     public Product create(ProductDto dto) {
-        Product domain = productMapper.toEntity(dto);
-        setDefaultCreate(domain);
-        return productRepository.save(domain);
+        Product product = mapper.map(dto, Product.class);
+        setDefaultCreate(product);
+        return productRepository.save(product);
     }
 
     @Override
     public Product update(ProductDto dto){
         Product domain = productRepository.findById(dto.getId()).orElseThrow(()-> new NotFoundException("Entity not found"));
-        productMapper.partialUpdate(domain, dto);
-        setDefaultUpdate(domain);
-        return productRepository.save(domain);
+        Product product = mapper.map(dto, Product.class);
+        setDefaultUpdate(product);
+        return productRepository.save(product);
     }
 
     @Override

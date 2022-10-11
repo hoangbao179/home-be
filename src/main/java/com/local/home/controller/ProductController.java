@@ -1,8 +1,8 @@
 package com.local.home.controller;
 
+import com.local.home.dto.product.ProductDto;
 import com.local.home.entity.Product;
-import com.local.home.service.IProductService;
-import com.local.home.service.dto.ProductDto;
+import com.local.home.service.product.IProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

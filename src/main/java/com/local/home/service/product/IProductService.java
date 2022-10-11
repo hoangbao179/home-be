@@ -1,7 +1,7 @@
-package com.local.home.service;
+package com.local.home.service.product;
 
+import com.local.home.dto.product.ProductDto;
 import com.local.home.entity.Product;
-import com.local.home.service.dto.ProductDto;
 
 import java.util.List;
 

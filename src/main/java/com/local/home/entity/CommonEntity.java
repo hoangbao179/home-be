@@ -24,5 +24,4 @@ public class CommonEntity {
 
     @Column(name = "date_update")
     private Date dateUpdate;
-
 }
